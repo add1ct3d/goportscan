@@ -15,8 +15,8 @@ import (
 func main() {
 	var wg sync.WaitGroup
 	var target string
-	build := 9
-	flag.StringVar(&target, "ip", "127.0.0.1", "target IP")
+	build := 10
+	flag.StringVar(&target, "t", "127.0.0.1", "target hostname or IP")
 	flag.Parse()
 	fmt.Println("goportscan build", build)
 	fmt.Println("Scanning", target)
@@ -32,7 +32,9 @@ func main() {
 				c.Close()
 			}
 		}(port)
-		time.Sleep(2 * time.Millisecond)
+		if p%5 == 0 {
+			time.Sleep(2 * time.Millisecond)
+		}
 	}
 	wg.Wait()
 }
