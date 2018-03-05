@@ -15,13 +15,22 @@ import (
 func main() {
 	var wg sync.WaitGroup
 	var target string
-	build := 10
-	flag.StringVar(&target, "t", "127.0.0.1", "target hostname or IP")
-	flag.Parse()
+	build := 14
 	fmt.Println("goportscan build", build)
-	fmt.Println("Scanning", target)
+	fmt.Println("   Matt Weidner <matt.weidner@gmail.com>, @jopawp")
+	fmt.Println("   https://github.com/mattweidner/goportscan")
+	flag.StringVar(&target, "t", "", "target hostname or IP")
+	flag.Parse()
+	fmt.Println("")
+	if target == "" {
+		fmt.Println("Please specify a target with the -t flag.")
+		fmt.Println("  ex: goportscan -t testfire.net")
+		fmt.Println("      goportscan -t 192.168.0.1")
+		return
+	}
+	fmt.Println("Scanning", target, " ports 1-65535")
 	wg.Add(65536)
-	for p := 0; p < 65536; p++ {
+	for p := 1; p < 65536; p++ {
 		port := fmt.Sprintf("%d", p)
 		go func(port string) {
 			defer wg.Done()
