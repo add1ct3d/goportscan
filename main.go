@@ -15,9 +15,8 @@ import (
 func main() {
 	var wg sync.WaitGroup
 	var target string
-	build := 14
-	fmt.Println("goportscan build", build)
-	fmt.Println("   Matt Weidner <matt.weidner@gmail.com>, @jopawp")
+	build := 15
+	fmt.Println("goportscan build", build, " Matt Weidner @jopawp")
 	fmt.Println("   https://github.com/mattweidner/goportscan")
 	flag.StringVar(&target, "t", "", "target hostname or IP")
 	flag.Parse()
@@ -29,7 +28,7 @@ func main() {
 		return
 	}
 	fmt.Println("Scanning", target, " ports 1-65535")
-	wg.Add(65536)
+	wg.Add(65535)
 	for p := 1; p < 65536; p++ {
 		port := fmt.Sprintf("%d", p)
 		go func(port string) {
