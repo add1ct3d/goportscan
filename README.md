@@ -1,7 +1,7 @@
 #goportscan
 Fast, concurrent, TCP connect port scanner.
 
-Matt Weidner <matt.weidner@gmail.com>, @jopawp
+Matt Weidner @jopawp
 
 # Compile and Install
 
